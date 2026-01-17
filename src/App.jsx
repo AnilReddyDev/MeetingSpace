@@ -1,20 +1,29 @@
 import React from "react";
-import FilterComp from "./components/FilterComp";
-import RoomCardComp from "./components/RoomCardComp";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 import HeaderComp from "./components/HeaderComp";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
+import LandingPage from "./pages/LandingPage";
+import AdminDashboard from "./pages/AdminDashboard";
+import Profile from "./pages/Profile";
+import VerifyEmail from "./pages/VerifyEmail";
 
 export default function App() {
   return (
-    <div className="h-screen w-full  gap-4 bg-hcl-blue-gradient flex flex-col">
-      <HeaderComp />
-      <div className="flex items-start justify-center">
-        <div className="left-con bg-gray-700 pr-3 flex justify-end w-1/4">
-          <FilterComp />
-        </div>
-        <div className="right-con bg-gray-400 pl-2 w-3/4">
-          <RoomCardComp />
-        </div>
-      </div>
-    </div>
+    <>
+   <BrowserRouter>
+   <HeaderComp/>
+   <Routes>
+    <Route path='/' element={<LandingPage/>}/>
+    <Route path='/home' element={<Home/>}/>
+    <Route path='/signin' element={<Signin/>}/>
+    <Route path='/signup' element={<Signup/>}/>
+    <Route path="/profile" element={<Profile />} /> 
+    <Route path='/admin/dashboard' element={<AdminDashboard/>}/>
+     <Route path="/verify" element={<VerifyEmail />} />
+   </Routes>
+   </BrowserRouter>
+    </>
   );
 }
