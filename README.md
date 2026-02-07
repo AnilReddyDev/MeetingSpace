@@ -1,16 +1,153 @@
-# React + Vite
+# 🏢 MeetingSpace – Corporate Meeting Room Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MeetingSpace is a full-stack web application designed to help organizations manage and book meeting rooms efficiently.
+Employees can view room availability and book rooms without conflicts, while administrators manage rooms, amenities, and monitor usage through a dashboard.
 
-Currently, two official plugins are available:
+<p align="center">
+  <p>Landing Page </p>
+  <img src="https://raw.githubusercontent.com/CatsOnTree/MruImgs/main/assests/img/ms_lp.png" alt="name"/>
+</p>
+<p align="center">
+  <p>Home Page </p>
+  <img src="https://raw.githubusercontent.com/CatsOnTree/MruImgs/main/assests/img/ms_home.png" alt="name"/>
+</p>
+<p align="center">
+  <p>Admin Page </p>
+  <img src="https://raw.githubusercontent.com/CatsOnTree/MruImgs/main/assests/img/ms_admin.png" alt="name"/>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📌 Problem Statement
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+In many organizations, meeting rooms are booked manually or through informal communication, leading to double bookings, confusion about availability, and poor utilization of rooms.
 
-## Expanding the ESLint configuration
+MeetingSpace solves this problem by providing a centralized, secure, and automated room booking system.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Key Features
+
+### 👤 User Features
+
+- User registration with email verification
+- Secure login using JWT authentication
+- View meeting rooms with capacity, floor, and amenities
+- Check real-time room availability
+- Book meeting rooms without overlapping conflicts
+- Cancel existing bookings
+
+### 🛠️ Admin Features
+
+- Create and manage meeting rooms
+- Assign amenities (TV, WiFi, Whiteboard, etc.)
+- Enable / disable rooms
+- View daily booking statistics per room
+- Role-based access control (ADMIN / USER)
+
+---
+
+## 🧱 Tech Stack
+
+Frontend: React
+Backend: Spring Boot
+Database: PostgreSQL
+ORM: Spring Data JPA
+Security: Spring Security + JWT
+Build Tool: Maven
+
+---
+
+## 🧭 Complete System Flow
+
+1. User registers using email and password
+2. System generates a verification token
+3. User verifies email
+4. User logs in and receives a JWT token
+5. User views rooms and availability
+6. User books a room without conflicts
+7. Admin manages rooms and monitors bookings
+
+---
+
+## 🔐 Authentication & Security
+
+- Passwords encrypted using BCrypt
+- JWT-based stateless authentication
+- Role-based access control
+- Secure booking conflict prevention
+
+---
+
+## 🧩 Database Design & Entity Relationships
+
+- User ↔ Role (Many-to-Many)
+- User → Booking (One-to-Many)
+- Booking → Room (Many-to-One)
+- Room ↔ Amenity (Many-to-Many)
+- User ↔ VerificationToken (One-to-One)
+
+---
+
+## 📊 ER Diagram
+
+See MeetingSpace_ER_Diagram.png in the repository.
+
+---
+
+## 📁 Backend Project Structure
+
+meetingspace-backend/
+└── src/main/java/com/meetingspace
+├── MeetingspaceApplication.java
+├── config/
+├── controller/
+├── dto/
+├── entity/
+├── repository/
+├── security/
+└── service/
+
+---
+
+## 📘 API Overview
+
+Authentication APIs:
+
+- POST /api/v1/auth/register
+- GET /api/v1/auth/verify
+- POST /api/v1/auth/login
+
+User APIs:
+
+- GET /api/v1/rooms/{roomId}/availability
+- POST /api/v1/bookings
+- POST /api/v1/bookings/{bookingId}/cancel
+
+Admin APIs:
+
+- POST /api/v1/admin/rooms
+- GET /api/v1/admin/rooms
+- GET /api/v1/admin/dashboard/rooms
+
+---
+
+## ⚙️ How to Run
+
+Prerequisites:
+
+- Java 11 or 17
+- PostgreSQL
+- Maven
+
+Steps:
+
+1. Clone the repository
+2. Configure application.properties
+3. Run using mvn spring-boot:run
+
+---
+
+## 🏁 Conclusion
+
+MeetingSpace is a secure, scalable, and user-friendly solution for managing corporate meeting rooms.
